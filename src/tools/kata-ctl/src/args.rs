@@ -20,7 +20,7 @@ pub enum Commands {
     Check(CheckArgument),
 
     /// Directly assign a volume to Kata Containers to manage
-    DirectVolume,
+    DirectVolume(DirectVolumeCommand),
 
     /// Display settings
     Env,
@@ -83,4 +83,21 @@ pub struct IptablesCommand {
 pub enum IpTablesArguments {
     /// Configure iptables
     Metrics,
+}
+
+#[derive(Debug, Args)]
+pub struct DirectVolumeCommand{
+    #[clap(subcommand)]
+    pub directvol_cmd: DirectVolSubcommand,
+    pub volume_path: String,
+    pub mount_info: String,
+}
+
+#[derive(Debug, Subcommand)]
+pub enum DirectVolSubcommand {
+    /// Direct volume commands
+    Add,
+    Remove,
+    Stats,
+    Resize,
 }

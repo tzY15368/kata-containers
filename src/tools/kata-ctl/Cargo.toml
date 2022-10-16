@@ -14,7 +14,24 @@ anyhow = "1.0.31"
 clap = { version = "3.2.20", features = ["derive", "cargo"] }
 reqwest = { version = "0.11", default-features = false, features = ["json", "blocking", "rustls-tls"] }
 serde_json = "1.0.85"
+serde = { version = "1.0", features = ["derive"] }
 thiserror = "1.0.35"
+runtimes ={ path = "../../runtime-rs/crates/runtimes"} 
+hyper = { version = "0.14.20", features = ["stream", "server", "http1"] }
+base64-url = "1.4.13"
+url = "2.3.1"
+futures = "0.3.24"
 
 [dev-dependencies]
 semver = "1.0.12"
+
+[patch.'crates-io']
+dbs-device = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-interrupt = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-legacy-devices = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-upcall = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-utils = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-virtio-devices = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-boot = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-arch = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
+dbs-address-space = { git = "https://github.com/openanolis/dragonball-sandbox.git", rev = "c3d7831aee7c3962b8a90f0afbfd0fb7e4d30323" }
