@@ -30,8 +30,8 @@ pub struct MgmtClient {
 
 impl MgmtClient {
     /// Construct a new client connecting to shim mgmt server
-    pub fn new(sid: String, timeout: Option<Duration>) -> Result<Self> {
-        let unix_socket_path = mgmt_socket_addr(sid);
+    pub fn new(sandbox_id: String, timeout: Option<Duration>) -> Result<Self> {
+        let unix_socket_path = mgmt_socket_addr(sandbox_id);
         let s_addr = unix_socket_path
             .strip_prefix("unix:")
             .context("failed to strix prefix")?;

@@ -10,7 +10,7 @@ const KATA_DIRECT_VOLUME_ROOT_PATH: &str = "/run/kata-containers/shared/direct-v
 const MOUNT_INFO_FILE_NAME: &str = "mountInfo.json";
 
 pub const DIRECT_VOLUME_STAT_URL: &str   = "/direct-volume/stats";
-//pub const DIRECT_VOLUME_RESIZE_URL: &str = "/direct-volume/resize";
+pub const DIRECT_VOLUME_RESIZE_URL: &str = "/direct-volume/resize";
 pub const DIRECT_VOLUME_PATH_KEY:&str   = "path";
 
 #[derive(Serialize, Deserialize)]
@@ -20,6 +20,11 @@ pub struct VolumeMountInfo {
     pub fs_type: String,
     pub metadata: HashMap<String, String>,
     pub options: Vec<String>,
+}
+#[derive(Serialize, Deserialize)]
+pub struct ResizeRequest {
+    pub size: u64,
+    pub volume_path: String,
 }
 
 pub fn get_volumn_mount_info(volume_path:&String)->Result<VolumeMountInfo>{

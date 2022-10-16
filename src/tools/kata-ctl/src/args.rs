@@ -90,7 +90,8 @@ pub struct DirectVolumeCommand{
     #[clap(subcommand)]
     pub directvol_cmd: DirectVolSubcommand,
     pub volume_path: String,
-    pub mount_info: String,
+    pub mount_info: Option<String>,
+    pub resize_size: Option<u64>,
 }
 
 #[derive(Debug, Subcommand)]
