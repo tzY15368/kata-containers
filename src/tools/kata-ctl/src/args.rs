@@ -109,7 +109,7 @@ pub enum DirectVolSubcommand {
 #[derive(Debug, Args)]
 pub struct DirectVolAddArgs {
     pub volume_path: String,
-    pub mount_info: Option<String>,
+    pub mount_info: String,
 }
 
 #[derive(Debug, Args)]

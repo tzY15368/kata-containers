@@ -13,13 +13,15 @@ const CONTENT_TYPE_JSON :&str = "application/json";
 pub fn handle_direct_volume(vol_cmd: DirectVolumeCommand) -> Result<()> {
     let command = vol_cmd.directvol_cmd;
     match command {
-        DirectVolSubcommand::Add(_args)=>{
+        DirectVolSubcommand::Add(args)=>{
+            runtimes::direct_volume::add(&args.volume_path, &args.mount_info)?;
         },
-        DirectVolSubcommand::Remove(_args)=>{
-
+        DirectVolSubcommand::Remove(args)=>{
+            runtimes::direct_volume::remove(&args.volume_path)?;
         },
         DirectVolSubcommand::Stats(args)=>{
-            executor::block_on(get_volume_stats(&args.volume_path))?;
+            let result = executor::block_on(stats(&args.volume_path))?;
+            println!("{}", &result);
         },
         DirectVolSubcommand::Resize(args)=>{
             executor::block_on(resize(&args.volume_path, args.resize_size))?;
@@ -47,7 +49,7 @@ async fn resize(volume_path: &String, size: u64) -> Result<()> {
     return Ok(());
 }
 
-async fn get_volume_stats(volume_path: &String) -> Result<String> {
+async fn stats(volume_path: &String) -> Result<String> {
     let sandbox_id = runtimes::direct_volume::get_sandbox_id_for_volume(volume_path)?;
     let mount_info = runtimes::direct_volume::get_volumn_mount_info(volume_path)?;
 
