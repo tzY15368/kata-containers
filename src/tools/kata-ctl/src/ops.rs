@@ -6,4 +6,3 @@
 pub mod check_ops;
 pub mod version;
 pub mod volume_ops;
-pub mod volume_shared;
