@@ -25,6 +25,7 @@ use tokio::sync::{mpsc::Sender, Mutex, RwLock};
 
 use crate::{health_check::HealthCheck, sandbox_persist::SandboxTYPE};
 use persist::{self, sandbox_persist::Persist};
+
 pub struct SandboxRestoreArgs {
     pub sid: String,
     pub toml_config: TomlConfig,
@@ -265,6 +266,14 @@ impl Sandbox for VirtSandbox {
 
     async fn agent_sock(&self) -> Result<String> {
         self.agent.agent_sock().await
+    }
+
+    async fn guest_volume_stats(&self, _volume_path:&String)->Result<String>{
+        Ok(String::from("guest_volume_statsnot implemented yet"))
+    }
+
+    async fn resize_guest_volume(&self, _volume_path:&String, _size:u64)->Result<()>{
+        Ok(())
     }
 }
 

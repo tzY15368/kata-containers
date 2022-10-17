@@ -16,6 +16,7 @@ hyperlocal = "0.8"
 base64-url = "1.4.13"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.85"
+url = "2.3.1"
 
 common = { path = "./common" }
 kata-types = { path = "../../../libs/kata-types" }

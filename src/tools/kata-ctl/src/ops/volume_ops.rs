@@ -40,7 +40,6 @@ async fn resize(volume_path: &String, size: u64) -> Result<()> {
     let encoded = serde_json::to_string(&resize_req)?;
     let shim_client = runtimes::MgmtClient::new(sandbox_id, Some(TIMEOUT)).unwrap();
 
-    // post_json(url, body)
     let url = runtimes::direct_volume::DIRECT_VOLUME_RESIZE_URL;
     let response = shim_client.post(url, &String::from(CONTENT_TYPE_JSON), &encoded).await?;
     if response.status() != hyper::StatusCode::OK {

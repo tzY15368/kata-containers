@@ -16,4 +16,6 @@ pub trait Sandbox: Send + Sync {
 
     // agent function
     async fn agent_sock(&self) -> Result<String>;
+    async fn guest_volume_stats(&self, volume_path: &String) -> Result<String>;
+    async fn resize_guest_volume(&self, volume_path: &String, size: u64) -> Result<()>;
 }
