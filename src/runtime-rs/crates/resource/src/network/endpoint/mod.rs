@@ -14,6 +14,8 @@ mod vlan_endpoint;
 pub use vlan_endpoint::VlanEndpoint;
 mod macvlan_endpoint;
 pub use macvlan_endpoint::MacVlanEndpoint;
+mod macvtap_endpoint;
+pub use macvtap_endpoint::MACVTAPEndpoint;
 pub mod endpoint_persist;
 mod endpoints_test;
 
