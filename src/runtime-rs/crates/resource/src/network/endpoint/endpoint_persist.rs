@@ -40,11 +40,15 @@ pub struct IpVlanEndpointState {
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
+pub struct MacVTapEndpointState {}
+
+#[derive(Serialize, Deserialize, Clone, Default)]
 pub struct EndpointState {
     pub physical_endpoint: Option<PhysicalEndpointState>,
     pub veth_endpoint: Option<VethEndpointState>,
     pub ipvlan_endpoint: Option<IpVlanEndpointState>,
     pub macvlan_endpoint: Option<MacvlanEndpointState>,
     pub vlan_endpoint: Option<VlanEndpointState>,
+    pub macvtap_endpoint: Option<MacVTapEndpointState>,
     // TODO : other endpoint
 }

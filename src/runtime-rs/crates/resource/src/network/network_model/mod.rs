@@ -4,6 +4,7 @@
 // SPDX-License-Identifier: Apache-2.0
 //
 
+pub mod macvtap_model;
 pub mod none_model;
 pub mod tc_filter_model;
 pub mod test_network_model;
@@ -15,10 +16,12 @@ use async_trait::async_trait;
 use super::NetworkPair;
 
 pub(crate) const TC_FILTER_NET_MODEL_STR: &str = "tcfilter";
+pub(crate) const MACVTAP_NET_MODEL_STR: &str = "macvtap";
 
 pub enum NetworkModelType {
     NoneModel,
     TcFilter,
+    MacVTap,
 }
 
 #[async_trait]
@@ -32,6 +35,9 @@ pub fn new(model: &str) -> Result<Arc<dyn NetworkModel>> {
     match model {
         TC_FILTER_NET_MODEL_STR => Ok(Arc::new(
             tc_filter_model::TcFilterModel::new().context("new tc filter model")?,
+        )),
+        MACVTAP_NET_MODEL_STR => Ok(Arc::new(
+            macvtap_model::MacVTapModel::new().context("new macvtap model")?,
         )),
         _ => Ok(Arc::new(
             none_model::NoneModel::new().context("new none model")?,

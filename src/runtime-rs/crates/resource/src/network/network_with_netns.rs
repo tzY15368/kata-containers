@@ -19,7 +19,8 @@ use tokio::sync::RwLock;
 
 use super::{
     endpoint::{
-        Endpoint, IPVlanEndpoint, MacVlanEndpoint, PhysicalEndpoint, VethEndpoint, VlanEndpoint,
+        Endpoint, IPVlanEndpoint, MacVTapEndpoint, MacVlanEndpoint, PhysicalEndpoint, VethEndpoint,
+        VlanEndpoint,
     },
     network_entity::NetworkEntity,
     network_info::network_info_from_link::NetworkInfoFromLink,
@@ -222,6 +223,12 @@ async fn create_endpoint(
                 )
                 .await
                 .context("macvlan endpoint")?;
+                Arc::new(ret)
+            }
+            "macvtap" => {
+                let ret = MacVTapEndpoint::new(handle, &attrs.name, idx, config.queues)
+                    .await
+                    .context("macvtap endpoint")?;
                 Arc::new(ret)
             }
             _ => return Err(anyhow!("unsupported link type: {}", link_type)),
